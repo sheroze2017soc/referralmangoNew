@@ -96,8 +96,10 @@ async function loginReferral(email, referralCode, wallet) {
                 email: email,
                 wallet: wallet,
             };
+            
             await collection.updateOne({ referralCode }, { $push: { children: childDocument } });
-            return { message: 'User added as a child under the referral code' };
+            return { message: 'User added as a child under the referral code',        referralWallet: referralDocument.wallet // Accessing wallet property of referralDocument
+        };
         }
 
         client.close();
